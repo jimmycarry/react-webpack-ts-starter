@@ -1,0 +1,7 @@
+.awcache/
+node_modules/
+prod/
+dist/
+package-lock.json
+.vscode
+.DS_Store
