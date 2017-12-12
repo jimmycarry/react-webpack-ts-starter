@@ -26,4 +26,8 @@ Not Support SSR! <br/>
    npm run build
 ```
 
+### road up 
+Add TSLint <br/>
+Continually updated<br/>
+
 
