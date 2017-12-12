@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 const images = require('../assets/bg.jpeg');
+const styles = require('./App.less');
 
 class App extends React.Component<{}, {}>{
     constructor(props) {
@@ -11,7 +12,7 @@ class App extends React.Component<{}, {}>{
     }
     render() {
         return (
-            <div>
+            <div className={styles['container']}>
                 React Starter Kit
                 <img src={images} />
             </div>

@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var HtmlPlugin = require('html-webpack-plugin');
 var config = {
@@ -19,21 +20,32 @@ var config = {
     },
      module: {
         rules:[
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" }, {
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader']
-                }),
-                include:path.join(__dirname,'node_modules/antd/dist')
-        }, {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]', 'postcss-loader']
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                importLoaders: 1,
+                                localIdentName:'[name]__[local]-[hash:base64:5]'
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: (loader) => [
+                                    require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+                                ]
+                            }
+                        }
+                    ]
                 }),
                 exclude: /node_modules/,
-        },{
+            },{
             test: /\.(jpe?g|png|gif)/,
             // loader: [
             //     'url?limit=4000&name=images/[name][hash:8].[ext]',
@@ -44,7 +56,26 @@ var config = {
             test: /\.less$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
-                use: ['css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]', 'less-loader','postcss-loader']
+                use: [
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName:'[name]__[local]-[hash:base64:5]'
+                        }
+                    },
+                    
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: (loader) => [
+                                require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+                            ]
+                        }
+                    },
+                    'less-loader'
+                ]
             }),
             exclude: /node_modules/,
         },
@@ -54,7 +85,8 @@ var config = {
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({name:'vendor', filename:'js/vendor.bundle.js'}),
+        new CaseSensitivePathsPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({name:'vendor', filename:'js/vendor.bundle.[hash:8].js'}),
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify("production")
@@ -68,13 +100,10 @@ var config = {
         }),
         new webpack.LoaderOptionsPlugin({
             debug:false,
-            minimize: true,
-            options:{
-               postcss: [autoprefixer({browsers:['last 8 versions']})]
-            }
+            minimize: true
         }),
         
-        new ExtractTextPlugin({ filename: "style.css" }),
+        new ExtractTextPlugin({ filename: "style/style.[hash:8].css" }),
         new HtmlPlugin({
             title:'Webpack Typescript Starter Kit'
         })

@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); 
+var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 const { CheckerPlugin } = require('awesome-typescript-loader')
 var config = {
@@ -24,20 +25,27 @@ var config = {
             test: /\.tsx?$/,
             loader: "awesome-typescript-loader",
             exclude: /node_modules/
-        },{
+        }, {
             test: /\.css/,
             use: [
                 'style-loader',
-                'css-loader',
-                'postcss-loader'
-            ],
-            include:path.join(__dirname,'node_modules/antd/dist')
-        },  {
-            test: /\.css/,
-            use: [
-                'style-loader',
-                'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
-                'postcss-loader'
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        importLoaders: 1,
+                        localIdentName: '[name]__[local]-[hash:base64:5]',
+                        sourceMap:true
+                    }
+                },
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: (loader) => [
+                            require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+                        ]
+                    }
+                }
             ],
             exclude: /node_modules/,
         }, {
@@ -47,9 +55,25 @@ var config = {
             test: /\.less$/,
             use: [
                 'style-loader',
-                'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
-                'less-loader',
-                'postcss-loader'
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        importLoaders: 1,
+                        sourceMap:true,
+                        localIdentName:'[name]__[local]-[hash:base64:5]'
+                    }
+                },
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: (loader) => [
+                            require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+                        ]
+                    }
+                },
+                'less-loader'
+                
             ],
             exclude: /node_modules/
         },
@@ -57,16 +81,14 @@ var config = {
         ]
     },
     plugins: [
+        new CaseSensitivePathsPlugin(),
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify("development")
             }
         }),
         new webpack.LoaderOptionsPlugin({
-            debug: true,
-            options: {
-                postcss: [autoprefixer({ browsers: ['last 3 versions'] })]
-            }
+            debug: true
         }),
         new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
         new webpack.HotModuleReplacementPlugin(),
