@@ -87,9 +87,6 @@ var config = {
                 "NODE_ENV": JSON.stringify("development")
             }
         }),
-        new webpack.LoaderOptionsPlugin({
-            debug: true
-        }),
         new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
         new webpack.HotModuleReplacementPlugin(),
         new CheckerPlugin()

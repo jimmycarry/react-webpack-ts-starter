@@ -31,7 +31,8 @@ var config = {
                             options: {
                                 modules: true,
                                 importLoaders: 1,
-                                localIdentName:'[name]__[local]-[hash:base64:5]'
+                                localIdentName: '[name]__[local]_css_[hash:base64:5]',
+                                minimize:true
                             }
                         },
                         {
@@ -62,7 +63,8 @@ var config = {
                         options: {
                             modules: true,
                             importLoaders: 1,
-                            localIdentName:'[name]__[local]-[hash:base64:5]'
+                            localIdentName: '[name]__[local]_less_[hash:base64:5]',
+                            minimize:true
                         }
                     },
                     
@@ -98,10 +100,7 @@ var config = {
                 drop_console:true
             }
         }),
-        new webpack.LoaderOptionsPlugin({
-            debug:false,
-            minimize: true
-        }),
+        
         
         new ExtractTextPlugin({ filename: "style/style.[hash:8].css" }),
         new HtmlPlugin({
