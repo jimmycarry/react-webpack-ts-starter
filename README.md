@@ -14,6 +14,7 @@
 Support CSS Modules <br/>
 Support Import Static File <br/>
 Support Less <br/>
+Support Decorator <br/>
 Not Support SSR! <br/>
 
 #### Start
@@ -29,5 +30,5 @@ Not Support SSR! <br/>
 ### road up 
 Add TSLint <br/>
 Continually updated<br/>
-
+Add Babel <br/>
 

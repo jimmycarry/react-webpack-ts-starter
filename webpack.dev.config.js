@@ -19,7 +19,7 @@ var config = {
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".css", ".less"]
     },
-    devtool: "eval",
+    devtool: "source-map",
     module: {
         rules: [{
             test: /\.tsx?$/,

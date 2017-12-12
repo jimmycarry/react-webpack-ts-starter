@@ -1,4 +1,5 @@
 {
+    "compileOnSave": false,
     "compilerOptions": {
         "jsx": "react",
         "allowJs": true,
@@ -17,7 +18,15 @@
     },
     "awesomeTypescriptLoaderOptions": {
         "useCache": true,
-        "emitRequireType": false
+        "emitRequireType": false,
+        "useBabel":true,
+        "babelOptions": {
+            "babelrc": false, /* Important line */
+            "presets": [
+                ["env", { "targets": "last 2 versions, ie 11"}]
+            ],
+            "plugins":["transform-decorators-legacy"]
+        }
     },
     "include": [
         "./src/**/*"
