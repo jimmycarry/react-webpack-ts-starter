@@ -27,7 +27,7 @@ class ListComponent extends React.Component<ListComponentProps, ListComponentSta
                 {a}
                 <ul>
                     {
-                        store.list.map((item, index) => {
+                        store.list.map((item:any, index:number) => {
                             return (
                                 <li key={index}>{item}</li>
                             );

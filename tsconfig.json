@@ -1,36 +1,23 @@
 {
-    "compileOnSave": false,
     "compilerOptions": {
-        "jsx": "react",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "lib": [
-            "esnext",
-            "dom"
-        ],
-        "allowSyntheticDefaultImports": true,
+        "strictNullChecks": true,
+        "sourceMap": false,
         "moduleResolution": "node",
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "sourceMap": true,
-        "target": "es5"
+        "experimentalDecorators": true,
+        "target": "es6",
+        "jsx":"preserve",
+        "allowSyntheticDefaultImports": true,
+        "noUnusedParameters":true,
+        "noUnusedLocals": true,
+        "noImplicitAny": false,
+        "lib": [
+            "es7",
+            "dom"
+        ]
     },
-    "awesomeTypescriptLoaderOptions": {
-        "useCache": true,
-        "emitRequireType": false,
-        "useBabel":true,
-        "babelOptions": {
-            "babelrc": false, /* Important line */
-            "presets": [
-                ["env", { "targets": "last 2 versions, ie 11"}]
-            ],
-            "plugins":["transform-decorators-legacy"]
-        }
-    },
-    "include": [
-        "./src/**/*"
-    ],
     "exclude": [
-        "node_modules"
+      "node_modules",
+      "lib",
+      "es"
     ]
-}
+  }
