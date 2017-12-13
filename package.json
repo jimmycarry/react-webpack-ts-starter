@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./server.js",
-    "build": "rm -rf ./prod&cross-env NODE_ENV=production webpack --progress --color"
+    "build": "rm -rf ./prod&cross-env NODE_ENV=production webpack --progress --color",
+    "lint:ts":"tslint -c 'tslint.json' -s './src' -p 'tsconfig.json'"
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +40,7 @@
     "postcss-loader": "^2.0.9",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.19.0",
+    "tslint": "^5.8.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^1.12.2",

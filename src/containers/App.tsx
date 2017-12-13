@@ -9,7 +9,7 @@ const store = observable({
     list: [1,2,3]
 });
 class App extends React.Component<{}, {}>{
-    constructor(props) {
+    constructor(props:any) {
         super(props);
     }
     componentDidMount() {

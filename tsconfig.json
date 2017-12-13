@@ -2,7 +2,6 @@
     "compileOnSave": false,
     "compilerOptions": {
         "jsx": "react",
-        "allowJs": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "lib": [
@@ -12,7 +11,7 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
         "module": "commonjs",
-        "noImplicitAny": false,
+        "noImplicitAny": true,
         "sourceMap": true,
         "target": "es5"
     },
