@@ -1,0 +1,9 @@
+{
+    "presets": [
+        ["env", { "targets": "last 2 versions, ie 11"}]
+    ],
+    "plugins":[
+        "transform-decorators-legacy",
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]
+    ]
+}

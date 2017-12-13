@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { observable } from 'mobx';
 import ListComponet from './List';
+import { Button } from 'antd';
 
 const images = require('../assets/bg.jpeg');
 const styles = require('./App.less');
@@ -19,8 +20,9 @@ class App extends React.Component<{}, {}>{
         return (
             <div className={styles['container']}>
                 React Starter Kit
-            <img src={images} />
-            <ListComponet store={store} />
+                <img src={images} />
+                <ListComponet store={store} />
+                <Button type='primary'>开始</Button>
             </div>
         );
     }

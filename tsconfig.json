@@ -11,21 +11,14 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
         "module": "commonjs",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "sourceMap": true,
         "target": "es5"
     },
     "awesomeTypescriptLoaderOptions": {
         "useCache": true,
         "emitRequireType": false,
-        "useBabel":true,
-        "babelOptions": {
-            "babelrc": false, /* Important line */
-            "presets": [
-                ["env", { "targets": "last 2 versions, ie 11"}]
-            ],
-            "plugins":["transform-decorators-legacy"]
-        }
+        "useBabel":true
     },
     "include": [
         "./src/**/*"

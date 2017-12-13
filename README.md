@@ -15,6 +15,8 @@ Support CSS Modules <br/>
 Support Import Static File <br/>
 Support Less <br/>
 Support Decorator <br/>
+Support Antd <br/>
+
 Not Support SSR! <br/>
 
 #### Start
@@ -27,8 +29,9 @@ Not Support SSR! <br/>
    npm run build
 ```
 
-### road up 
+### road up
 Add TSLint <br/>
 Continually updated<br/>
 Add Babel <br/>
+
 

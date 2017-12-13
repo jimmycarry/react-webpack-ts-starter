@@ -8,6 +8,7 @@ interface ListComponentProps{
 interface ListComponentState{
     a: number;
 }
+
 @observer
 class ListComponent extends React.Component<ListComponentProps, ListComponentState>{
     constructor(props:ListComponentProps) {

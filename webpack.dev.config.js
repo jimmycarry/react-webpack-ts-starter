@@ -1,14 +1,17 @@
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin'); 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var autoprefixer = require('autoprefixer');
-const { CheckerPlugin } = require('awesome-typescript-loader')
+const { CheckerPlugin } = require('awesome-typescript-loader');
+
+const theme = require('./theme');
+
 var config = {
     entry: {
         vendor: ['react', 'react-dom'],
-        index: ['webpack-hot-middleware/client?quiet=true&reload=true', './src/index.tsx']
-        
+        index: ['webpack-hot-middleware/client?reload=true', './src/index.tsx']
+
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -26,7 +29,7 @@ var config = {
             loader: "awesome-typescript-loader",
             exclude: /node_modules/
         }, {
-            test: /\.css/,
+            test: /\.css$/,
             use: [
                 'style-loader',
                 {
@@ -35,7 +38,7 @@ var config = {
                         modules: true,
                         importLoaders: 1,
                         localIdentName: '[name]__[local]-[hash:base64:5]',
-                        sourceMap:true
+                        sourceMap: true
                     }
                 },
                 {
@@ -60,8 +63,8 @@ var config = {
                     options: {
                         modules: true,
                         importLoaders: 1,
-                        sourceMap:true,
-                        localIdentName:'[name]__[local]-[hash:base64:5]'
+                        sourceMap: true,
+                        localIdentName: '[name]__[local]-[hash:base64:5]'
                     }
                 },
                 {
@@ -73,11 +76,32 @@ var config = {
                     }
                 },
                 'less-loader'
-                
+
             ],
             exclude: /node_modules/
-        },
-        { test: /\.js$/, loader: "source-map-loader", enforce: 'pre' },
+            }, {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: (loader) => [
+                                require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'less-loader',
+                        'options': {
+                            'modifyVars':theme
+                        }
+                    }
+                ],
+                include:path.join(__dirname,'node_modules/antd/dist')
+            },
+            { test: /\.js$/, loader: "source-map-loader", enforce: 'pre' },
         ]
     },
     plugins: [
