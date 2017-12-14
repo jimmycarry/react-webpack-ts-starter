@@ -11,7 +11,7 @@ var routes = require("./routes");
 
 
 var app = new express();
-var PORT = 1234;
+var PORT = process.env.PORT || 1234;
 //config.entry.main.unshift("webpack-dev-server/client?http://localhost:3000/", "webpack/hot/dev-server");
 var compiler = webpack(config);
 

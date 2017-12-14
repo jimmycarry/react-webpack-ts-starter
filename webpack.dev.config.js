@@ -3,7 +3,6 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var autoprefixer = require('autoprefixer');
-const { CheckerPlugin } = require('awesome-typescript-loader')
 var config = {
     entry: {
         vendor: ['react', 'react-dom'],
@@ -21,85 +20,109 @@ var config = {
     },
     devtool: "source-map",
     module: {
-        rules: [{
-            test: /\.tsx?$/,
-            use: [
-                'babel-loader?cacheDirectory',
-                {
-                    loader: 'ts-loader',
-                }
-            ],
-            exclude: /node_modules/
-        }, {
-            test: /\.jsx?$/,
-            use: [
-                'babel-loader?cacheDirectory'
-            ]
-        }, {
-            test: /\.css/,
-            use: [
-                'style-loader',
-                {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true,
-                        importLoaders: 1,
-                        localIdentName: '[name]__[local]-[hash:base64:5]',
-                        sourceMap: true
-                    }
-                },
-                {
-                    loader: 'postcss-loader',
-                    options: {
-                        plugins: (loader) => [
-                            require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
-                        ]
-                    }
-                }
-            ],
-            exclude: /node_modules/,
-        }, {
-            test: /\.(jpe?g|png|gif)/,
-            loader: 'url-loader?limit=4000&name=images/[name][hash:8].[ext]'
-        }, {
-            test: /\.less$/,
-            use: [
-                'style-loader',
-                {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true,
-                        importLoaders: 1,
-                        sourceMap: true,
-                        localIdentName: '[name]__[local]-[hash:base64:5]'
-                    }
-                },
-                {
-                    loader: 'postcss-loader',
-                    options: {
-                        plugins: (loader) => [
-                            require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
-                        ]
-                    }
-                },
-                'less-loader'
+        rules: [
+            {
+                exclude: [
+                    /\.html$/,
+                    /\.(ts|tsx)$/,
+                    /\.(js|jsx)$/,
+                    /\.css$/,
+                    /\.less$/,
+                    /\.json$/,
+                    /\.bmp$/,
+                    /\.gif$/,
+                    /\.jpe?g$/,
+                    /\.png$/,
+                  ],
+                  loader: require.resolve('file-loader'),
+                  options: {
+                    name: 'images/[name].[hash:8].[ext]',
+                  },
+            },
 
-            ],
-            exclude: /node_modules/
-        },
-        { test: /\.js$/, loader: "source-map-loader", enforce: 'pre' },
+            {
+                test: /\.tsx?$/,
+                use: [
+                    'babel-loader?cacheDirectory',
+                    {
+                        loader: 'ts-loader',
+                    }
+                ],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.jsx?$/,
+                use: [
+                    'babel-loader?cacheDirectory'
+                ]
+            },
+            {
+                test: /\.css/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[name]__[local]-[hash:base64:5]',
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: (loader) => [
+                                require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+                            ]
+                        }
+                    }
+                ],
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.(jpe?g|png|gif)/,
+                loader: 'url-loader?limit=4000&name=images/[name][hash:8].[ext]'
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            sourceMap: true,
+                            localIdentName: '[name]__[local]-[hash:base64:5]'
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: (loader) => [
+                                require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+                            ]
+                        }
+                    },
+                    'less-loader'
+
+                ],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.js$/, loader: "source-map-loader", enforce: 'pre'
+            },
         ]
     },
     plugins: [
-        new CaseSensitivePathsPlugin(),
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify("development")
             }
         }),
         new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
-        new webpack.HotModuleReplacementPlugin(),
-        new CheckerPlugin()
+        new webpack.HotModuleReplacementPlugin()
 
     ]
 };

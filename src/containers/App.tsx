@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observable } from 'mobx';
 import ListComponet from './List';
 
-const images = require('../assets/bg.jpeg');
+const logo = require('../assets/logo.svg');
 const styles = require('./App.less');
 
 const store = observable({
@@ -18,9 +18,8 @@ class App extends React.Component<{}, {}>{
     render() {
         return (
             <div className={styles['container']}>
-                React Starter Kit
-            <img src={images} />
-            <ListComponet store={store} />
+                <img src={logo} className={styles['logo']}/>
+                <ListComponet store={store} />
             </div>
         );
     }
