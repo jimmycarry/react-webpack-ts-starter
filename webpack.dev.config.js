@@ -3,6 +3,27 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var autoprefixer = require('autoprefixer');
+
+var baseCSSLoader = [
+    {
+        loader: 'css-loader',
+        options: {
+            modules: true,
+            importLoaders: 1,
+            localIdentName: '[name]__[local]-[hash:base64:5]',
+            sourceMap: true
+        }
+    },
+    {
+        loader: 'postcss-loader',
+        options: {
+            plugins: (loader) => [
+                require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
+            ]
+        }
+    }
+];
+
 var config = {
     entry: {
         vendor: ['react', 'react-dom'],
@@ -60,23 +81,7 @@ var config = {
                 test: /\.css/,
                 use: [
                     'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            importLoaders: 1,
-                            localIdentName: '[name]__[local]-[hash:base64:5]',
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: (loader) => [
-                                require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
-                            ]
-                        }
-                    }
+                    ...baseCSSLoader
                 ],
                 exclude: /node_modules/,
             },
@@ -88,23 +93,7 @@ var config = {
                 test: /\.less$/,
                 use: [
                     'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            importLoaders: 1,
-                            sourceMap: true,
-                            localIdentName: '[name]__[local]-[hash:base64:5]'
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: (loader) => [
-                                require('autoprefixer')({ browsers: ['last 3 versions', 'iOS 9'] }),
-                            ]
-                        }
-                    },
+                    ...baseCSSLoader,
                     'less-loader'
 
                 ],
