@@ -3,10 +3,11 @@
 ### Related technologies
 [typescript](https://www.typescriptlang.org/) <br/>
 [webpack](https://www.typescriptlang.org/) <br/>
-[awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader) <br/>
+[ts-loader](https://github.com/TypeStrong/ts-loader) <br/>
+[babel-loader](https://github.com/babel/babel-loader)
 [less](https://github.com/less) <br/>
 [less-loader](https://github.com/webpack-contrib/less-loader) <br/>
-[post-css](https://github.com/postcss/postcss) <br/>
+[postcss](https://github.com/postcss/postcss) <br/>
 [react](https://reactjs.org/)
 
 
@@ -27,7 +28,7 @@ Not Support SSR! <br/>
    npm run build
 ```
 
-### road up 
+### road up
 Add TSLint <br/>
 Continually updated<br/>
 Add Babel <br/>
