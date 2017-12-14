@@ -15,6 +15,7 @@
 Support CSS Modules <br/>
 Support Import Static File <br/>
 Support Less <br/>
+Support Babel <br/>
 Support Decorator <br/>
 Not Support SSR! <br/>
 
@@ -28,8 +29,6 @@ Not Support SSR! <br/>
    npm run build
 ```
 
-### road up
-Add TSLint <br/>
+### road map
 Continually updated<br/>
-Add Babel <br/>
 
