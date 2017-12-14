@@ -39,7 +39,7 @@ var config = {
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", '.jsx', ".css", ".less"]
     },
-    devtool: "eval",
+    devtool: "cheap-module-eval-source-map",
     module: {
         rules: [
             {
