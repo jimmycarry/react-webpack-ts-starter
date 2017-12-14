@@ -5,6 +5,7 @@ var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var paths = require('./paths');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var config = {
     entry: {
         vendor: ['react', 'react-dom'],
@@ -146,18 +147,35 @@ var config = {
             inject: true,
             template: paths.appHtml,
             minify: {
-              removeComments: true,
-              collapseWhitespace: true,
-              removeRedundantAttributes: true,
-              useShortDoctype: true,
-              removeEmptyAttributes: true,
-              removeStyleLinkTypeAttributes: true,
-              keepClosingSlash: true,
-              minifyJS: true,
-              minifyCSS: true,
-              minifyURLs: true,
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
             },
-          }),
+        }),
+        new CopyWebpackPlugin(
+            [
+                { from: './external', to: './' }
+            ],
+            {
+                ignore: [
+                    // Doesn't copy any files with a txt extension
+                    'index.html',
+                    '*.md'
+                ],
+
+                // By default, we only copy modified files during
+                // a watch or webpack-dev-server build. Setting this
+                // to `true` copies all files.
+                copyUnmodified: true
+            }
+        )
     ]
 };
 
