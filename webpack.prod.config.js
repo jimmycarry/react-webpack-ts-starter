@@ -128,12 +128,13 @@ var config = {
     },
     plugins: [
         new CaseSensitivePathsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'js/vendor.bundle.[hash:8].js' }),
+
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify("production")
             }
         }),
+        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'js/vendor.bundle.[hash:8].js',minChunks:Infinity }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
@@ -145,19 +146,7 @@ var config = {
         new ExtractTextPlugin({ filename: "style/style.[hash:8].css" }),
         new HtmlWebpackPlugin({
             inject: true,
-            template: paths.appHtml,
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-                removeEmptyAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true,
-            },
+            template: paths.appHtml
         }),
         new CopyWebpackPlugin(
             [
