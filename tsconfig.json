@@ -13,7 +13,12 @@
         "module": "commonjs",
         "noImplicitAny": false,
         "sourceMap": true,
-        "target": "es5"
+        "target": "es5",
+        "paths": { // define absolute path mappings
+            "@src/*": ["src/*"] // will enable -> import { ... } from '@src/components'
+            // in webpack you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
+        },
+        "baseUrl": "./"
     },
     "include": [
         "./src/**/*"

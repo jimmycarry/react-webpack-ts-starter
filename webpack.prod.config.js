@@ -18,7 +18,10 @@ var config = {
         publicPath: '/'
     },
     resolve: {
-        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".css", ".less"]
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".css", ".less"],
+        alias: {
+            '@src': path.resolve(__dirname, './src')
+        }
     },
     module: {
         rules: [

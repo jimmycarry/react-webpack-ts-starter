@@ -37,7 +37,11 @@ var config = {
         pathinfo: true
     },
     resolve: {
-        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", '.jsx', ".css", ".less"]
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", '.jsx', ".css", ".less"],
+        alias: {
+            '@src': path.resolve(__dirname, './src')
+        }
+
     },
     devtool: "cheap-module-eval-source-map",
     module: {
