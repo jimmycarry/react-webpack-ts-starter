@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { observable } from 'mobx';
 import ListComponet from './List';
+import { ListStore } from './ListStore';
 
 const logo = require('../assets/logo.svg');
 const styles = require('./App.less');
 
-const store = observable({
-    list: [1,2,3]
-});
 class App extends React.Component<{}, {}>{
     constructor(props:any) {
         super(props);
@@ -18,8 +16,10 @@ class App extends React.Component<{}, {}>{
     render() {
         return (
             <div className={styles['container']}>
-                <img src={logo} className={styles['logo']}/>
-                <ListComponet store={store} />
+                <div className={styles['logo-container']}>
+                    <img src={logo} className={styles['logo']} />
+                </div>
+                <ListComponet store={new ListStore()} />
             </div>
         );
     }

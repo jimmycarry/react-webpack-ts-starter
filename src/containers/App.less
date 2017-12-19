@@ -1,9 +1,22 @@
 .container{
     margin: auto;
+    .logo-container{
+        background: #000;
+    }
     .logo{
         width:100px;
         height: 100px;
         display:block;
         margin: auto;
+        animation: logoAnimate 5s infinite ease;
+    }
+}
+@keyframes logoAnimate{
+    0%{
+        transform: rotate(0deg);
+    } 50%{
+        transform: rotate(360deg);
+    } 100%{
+        transform: rotate(0deg);
     }
 }

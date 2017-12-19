@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { ListStore } from './ListStore';
 
 interface ListComponentProps{
-    store: any;
+    store: ListStore;
 }
 
 interface ListComponentState{
