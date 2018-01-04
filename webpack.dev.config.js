@@ -10,7 +10,7 @@ var baseCSSLoader = [
         options: {
             modules: true,
             importLoaders: 1,
-            localIdentName: '[name]__[local]-[hash:base64:5]',
+            localIdentName: '[name]_[local]_[hash:base64:5]',
             sourceMap: true
         }
     },
@@ -27,7 +27,7 @@ var baseCSSLoader = [
 var config = {
     entry: {
         vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'mobx', 'mobx-react','babel-polyfill'],
-        index: ['webpack-hot-middleware/client?quiet=true&reload=true', './src/index.tsx']
+        index: ['webpack-hot-middleware/client?reload=true', './src/index.tsx']
 
     },
     output: {
@@ -46,6 +46,14 @@ var config = {
     devtool: "cheap-module-eval-source-map",
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                enforce: 'pre',
+                loader: 'tslint-loader',
+                options: {
+                    emitErrors:true
+                 }
+            },
             {
                 exclude: [
                     /\.html$/,

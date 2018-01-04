@@ -19,6 +19,7 @@
             "@src/*": ["src/*"] // will enable -> import { ... } from '@src/components'
             // in webpack you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
         },
+        "strictNullChecks": true,
         "baseUrl": "./"
     },
     "include": [

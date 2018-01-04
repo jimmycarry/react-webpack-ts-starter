@@ -71,7 +71,7 @@ var config = {
                             options: {
                                 modules: true,
                                 importLoaders: 1,
-                                localIdentName: '[name]__[local]_css_[hash:base64:5]',
+                                localIdentName: '[name]_[local]_css_[hash:base64:5]',
                                 minimize: true
                             }
                         },
@@ -105,7 +105,7 @@ var config = {
                             options: {
                                 modules: true,
                                 importLoaders: 1,
-                                localIdentName: '[name]__[local]_less_[hash:base64:5]',
+                                localIdentName: '[name]_[local]_less_[hash:base64:5]',
                                 minimize: true
                             }
                         },
@@ -126,7 +126,7 @@ var config = {
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {
-                test: /\.js$/, loader: "source-map-loader"
+                test: /\.js$/, loader: "source-map-loader",enforce: 'pre'
             }
         ]
     },
