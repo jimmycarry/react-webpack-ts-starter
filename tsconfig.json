@@ -2,6 +2,7 @@
     "compileOnSave": false,
     "compilerOptions": {
         "jsx": "preserve",
+        "allowJs": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "lib": [

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { observable } from 'mobx';
-import { BrowserRouter, Switch,Route } from 'react-router-dom';
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { appStore } from '@src/Store';
 import {Routes } from '@src/Routes';
+import { MenuComponents } from '@src/components/Menu/MenuComponents';
 
 class App extends React.Component<{}, {}>{
     constructor(props:any) {
@@ -15,7 +17,7 @@ class App extends React.Component<{}, {}>{
     render() {
         return (
             <Provider {...appStore} >
-                <BrowserRouter>
+                <Router>
                     <Switch>
                         {
                             Routes.map((item, index) => {
@@ -23,7 +25,7 @@ class App extends React.Component<{}, {}>{
                             })
                         }
                     </Switch>
-                </BrowserRouter>
+                </Router>
             </Provider>
         );
     }

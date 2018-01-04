@@ -26,7 +26,7 @@ var baseCSSLoader = [
 
 var config = {
     entry: {
-        vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'mobx', 'mobx-react'],
+        vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'mobx', 'mobx-react','babel-polyfill'],
         index: ['webpack-hot-middleware/client?quiet=true&reload=true', './src/index.tsx']
 
     },

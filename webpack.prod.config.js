@@ -8,7 +8,7 @@ var paths = require('./paths');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var config = {
     entry: {
-        vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'mobx', 'mobx-react'],
+        vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'mobx', 'mobx-react','babel-polyfill'],
         app: './src/index.tsx'
 
     },
@@ -23,6 +23,7 @@ var config = {
             '@src': path.resolve(__dirname, './src')
         }
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
