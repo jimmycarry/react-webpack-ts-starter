@@ -8,7 +8,7 @@ var paths = require('./paths');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var config = {
     entry: {
-        vendor: ['react', 'react-dom'],
+        vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'mobx', 'mobx-react'],
         app: './src/index.tsx'
 
     },

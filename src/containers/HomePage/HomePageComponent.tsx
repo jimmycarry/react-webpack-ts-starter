@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observable } from 'mobx';
 import { inject, observer } from 'mobx-react';
 
-const logo = require('../assets/logo.svg');
+const logo = require('../../assets/logo.svg');
 const styles = require('./HomePageStyle.less');
 
 @inject('HomePageStore')
