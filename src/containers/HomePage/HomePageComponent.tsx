@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { observable } from 'mobx';
-import ListComponet from './List';
-import { ListStore } from './ListStore';
+import { inject, observer } from 'mobx-react';
 
 const logo = require('../assets/logo.svg');
-const styles = require('./App.less');
+const styles = require('./HomePageStyle.less');
 
-class App extends React.Component<{}, {}>{
+@inject('HomePageStore')
+@observer
+export class HomePageComponent extends React.Component<{}, {}>{
     constructor(props:any) {
         super(props);
     }
@@ -19,10 +20,7 @@ class App extends React.Component<{}, {}>{
                 <div className={styles['logo-container']}>
                     <img src={logo} className={styles['logo']} />
                 </div>
-                <ListComponet store={new ListStore()} />
             </div>
         );
     }
 }
-
-export default App;
