@@ -10,7 +10,6 @@ const dom = document.getElementById('app');
 ReactDOM.render(
     [
         <App key={'app'}/>,
-        <DevTools key={'dev'}/>
     ],
     dom
 );
