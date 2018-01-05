@@ -18,13 +18,17 @@ class App extends React.Component<{}, {}>{
         return (
             <Provider {...appStore} >
                 <Router>
-                    <Switch>
-                        {
-                            Routes.map((item, index) => {
-                                return <Route {...item} key={index} />;
-                            })
-                        }
-                    </Switch>
+                    <div>
+                        <MenuComponents></MenuComponents>
+                        <div>
+                            {
+                                Routes.map((item, index) => {
+                                    return <Route {...item} key={index} />;
+                                })
+                            }
+                        </div>
+                    </div>
+
                 </Router>
             </Provider>
         );

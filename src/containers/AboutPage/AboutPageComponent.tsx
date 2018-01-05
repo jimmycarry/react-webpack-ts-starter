@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { AboutPageStore } from './AboutPageStore';
+import { BaseContainerPageProps } from '@src/model/BaseModel';
 import { observer, inject } from 'mobx-react';
 
-export interface AboutPageProps{
+export interface AboutPageProps extends BaseContainerPageProps<{}>{
     AboutPageStore: AboutPageStore;
 }
 

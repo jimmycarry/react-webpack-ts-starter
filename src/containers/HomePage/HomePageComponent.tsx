@@ -3,27 +3,27 @@ import { observable } from 'mobx';
 import { HomePageStore } from './HomePageStore';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
+import { BaseContainerPageProps } from '@src/model/BaseModel';
 
 const logo = require('../../assets/logo.svg');
 const styles = require('./HomePageStyle.less');
 
-export interface HomePageProps{
+export interface HomePageProps extends BaseContainerPageProps<{}>{
     HomePageStore: HomePageStore;
 }
+
 @inject('HomePageStore')
 @observer
 export class HomePageComponent extends React.Component<HomePageProps, {}>{
-    constructor(props:any) {
+    constructor(props: HomePageProps) {
         super(props);
     }
     componentDidMount() {
-        console.log(this);
         setTimeout(() => {
             this.props.HomePageStore.request();
         }, 3000);
     }
     render() {
-        console.log(this);
         return (
             <div className={styles['container']}>
                 <div className={styles['logo-container']}>
